@@ -1,0 +1,26 @@
+ # created a repo on github, added README and LICENSE
+ git clone https://github.com/sbargy/gitflowsandbox.git
+ cd gitflowsandbox/
+ git flow init
+ git checkout -b develop
+ git flow feature start first_feature
+ vi code.py
+ git add code.py 
+ git commit -a
+ git flow feature finish first_feature
+ # the above command merged this branch back into the branch
+ # from which it came, then deleted the feature branch
+ git checkout master
+ git merge develop
+ git checkout develop
+ git push origin develop # push this branch back to the github origin, other it would only exist here
+ git checkout first_feature # cannot do, it doesn't exist any more
+ git flow feature start second_feature
+ git push origin feature/second_feature # push this back to the github origin so it will exist there
+ vi code2.py
+ git add code2.py 
+ git commit -a
+ git push # push the recent commits back to origin (this branch on github)
+ git flow feature finish second_feature # merge into develop and delete, then switch back to develop branch
+ git push # push merges back to origin
+ git branch -d feature/second_feature # delete locally, but still exists on the github origin
